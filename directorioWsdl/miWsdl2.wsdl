@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://localhost/pruebas/miWsdl2/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="miWsdl2" targetNamespace="http://localhost/pruebas/miWsdl2/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://localhost/pruebas/miWsdl2/">
+	<xsd:import namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+	schemaLocation="http://localhost/pruebas/oasis-200401-wss-wssecurity-secext-1.0.xsd"/>
+      <xsd:element name="informacionActualServer">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="mensaje" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+	  
+      <xsd:element name="informacionActualServerResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+			<xsd:element name="validacion_usuario" type="xsd:string"/>
+            <xsd:element name="out" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+	  
+	  <xsd:element name="Seguridad">
+	  <xsd:complexType>
+	  <xsd:complexContent>
+	  <xsd:restriction base="wsse:SecurityHeaderType">
+		<xsd:sequence>
+			<xsd:element ref="wsse:UsernameToken"/>
+			<xsd:element ref="wsse:Password"/>
+		</xsd:sequence>
+		</xsd:restriction>
+		</xsd:complexContent>
+		</xsd:complexType>
+	  </xsd:element>
+	  
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="informacionActualServerRequest">
+    <wsdl:part element="tns:informacionActualServer" name="mensaje"/>
+  </wsdl:message>
+  <wsdl:message name="informacionActualServerResponse">
+    <wsdl:part element="tns:informacionActualServerResponse" name="out"/>
+  </wsdl:message>
+  
+  <wsdl:message name="Cabecera">
+	<wsdl:part name="Security" element="tns:Seguridad"/>
+  </wsdl:message>
+  
+  <wsdl:portType name="miWsdl2">
+    <wsdl:operation name="informacionActualServer">
+      <wsdl:input message="tns:informacionActualServerRequest"/>
+      <wsdl:output message="tns:informacionActualServerResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="miWsdl2SOAP" type="tns:miWsdl2">
+    <soap12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="informacionActualServer">
+      <soap12:operation soapAction="http://localhost/pruebas/miWsdl2/informacionActualServer"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+		<soap12:header use="literal" message="tns:Cabecera" part="Security"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="miWsdl2">
+    <wsdl:port binding="tns:miWsdl2SOAP" name="miWsdl2SOAP">
+      <soap12:address location="http://localhost/pruebas/serverSOAP2.php"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
