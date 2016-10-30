@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="miWsdl2/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="miWsdl2" targetNamespace="miWsdl2/">
   <wsdl:types>
-    <xsd:schema targetNamespace="http://ejemplo2-soapcc.44fs.preview.openshiftapps.com/miWsdl2/">
+    <xsd:schema targetNamespace="miWsdl2/">
 	<xsd:import namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
 	schemaLocation="../oasis-200401-wss-wssecurity-secext-1.0.xsd"/>
       <xsd:element name="informacionActualServer">
