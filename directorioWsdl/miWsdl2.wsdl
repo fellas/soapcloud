@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="miWsdl2/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="miWsdl2" targetNamespace="miWsdl2/">
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://ejemplo-ejemplo1.44fs.preview.openshiftapps.com/miWsdl2/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="miWsdl2" targetNamespace="http://ejemplo-ejemplo1.44fs.preview.openshiftapps.com/miWsdl2/">
   <wsdl:types>
-    <xsd:schema targetNamespace="miWsdl2/">
+    <xsd:schema targetNamespace="http://ejemplo-ejemplo1.44fs.preview.openshiftapps.com/miWsdl2/">
 	<xsd:import namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
-	schemaLocation="../oasis-200401-wss-wssecurity-secext-1.0.xsd"/>
+	schemaLocation="http://ejemplo-ejemplo1.44fs.preview.openshiftapps.com/oasis-200401-wss-wssecurity-secext-1.0.xsd"/>
       <xsd:element name="informacionActualServer">
         <xsd:complexType>
           <xsd:sequence>
@@ -56,7 +56,7 @@
   <wsdl:binding name="miWsdl2SOAP" type="tns:miWsdl2">
     <soap12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
     <wsdl:operation name="informacionActualServer">
-      <soap12:operation soapAction="../informacionActualServer"/>
+      <soap12:operation soapAction="http://ejemplo-ejemplo1.44fs.preview.openshiftapps.com/miWsdl2/informacionActualServer"/>
       <wsdl:input>
         <soap12:body use="literal"/>
 		<soap12:header use="literal" message="tns:Cabecera" part="Security"/>
@@ -68,7 +68,7 @@
   </wsdl:binding>
   <wsdl:service name="miWsdl2">
     <wsdl:port binding="tns:miWsdl2SOAP" name="miWsdl2SOAP">
-      <soap12:address location="../serverSOAP2.php"/>
+      <soap12:address location="http://ejemplo-ejemplo1.44fs.preview.openshiftapps.com/serverSOAP2.php"/>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
