@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://localhost/pruebas/miWsdl/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="miWsdl" targetNamespace="http://localhost/pruebas/directorioWsdl/miWsdl/">
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://cloudsoap-davidenq.rhcloud.com/miWsdl3/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="miWsdl3" targetNamespace="http://cloudsoap-davidenq.rhcloud.com/miWsdl3/">
   <wsdl:types>
-    <xsd:schema targetNamespace="http://localhost/pruebas/directorioWsdl/miWsdl/">
+    <xsd:schema targetNamespace="http://cloudsoap-davidenq.rhcloud.com/miWsdl3/">
 	<xsd:import namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
-	schemaLocation="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"/>
+	schemaLocation="http://cloudsoap-davidenq.rhcloud.com/oasis-200401-wss-wssecurity-secext-1.0.xsd"/>
       <xsd:element name="informacionActualServer">
         <xsd:complexType>
           <xsd:sequence>
@@ -12,14 +12,15 @@
         </xsd:complexType>
       </xsd:element>
 	  
-	  
       <xsd:element name="informacionActualServerResponse">
         <xsd:complexType>
           <xsd:sequence>
+			<xsd:element name="validacion_usuario" type="xsd:string"/>
             <xsd:element name="out" type="xsd:string"/>
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
+	  
 	  <xsd:element name="Seguridad">
 	  <xsd:complexType>
 	  <xsd:complexContent>
@@ -32,7 +33,6 @@
 		</xsd:complexContent>
 		</xsd:complexType>
 	  </xsd:element>
-	  
 	  
     </xsd:schema>
   </wsdl:types>
@@ -47,16 +47,16 @@
 	<wsdl:part name="Security" element="tns:Seguridad"/>
   </wsdl:message>
   
-  <wsdl:portType name="miWsdl">
+  <wsdl:portType name="miWsdl2">
     <wsdl:operation name="informacionActualServer">
       <wsdl:input message="tns:informacionActualServerRequest"/>
       <wsdl:output message="tns:informacionActualServerResponse"/>
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:binding name="miWsdlSOAP" type="tns:miWsdl">
+  <wsdl:binding name="miWsdl2SOAP" type="tns:miWsdl2">
     <soap12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
     <wsdl:operation name="informacionActualServer">
-      <soap12:operation soapAction="http://localhost/pruebas/directorioWsdl/miWsdl/informacionActualServer"/>
+      <soap12:operation soapAction="http://cloudsoap-davidenq.rhcloud.com/miWsdl3/informacionActualServer"/>
       <wsdl:input>
         <soap12:body use="literal"/>
 		<soap12:header use="literal" message="tns:Cabecera" part="Security"/>
@@ -66,9 +66,9 @@
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
-  <wsdl:service name="miWsdl">
-    <wsdl:port binding="tns:miWsdlSOAP" name="miWsdlSOAP">
-      <soap12:address location="http://localhost/pruebas/serverSOAP2.php"/>
+  <wsdl:service name="miWsdl2">
+    <wsdl:port binding="tns:miWsdl2SOAP" name="miWsdl2SOAP">
+      <soap12:address location="http://cloudsoap-davidenq.rhcloud.com/serverSOAP3.php"/>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
